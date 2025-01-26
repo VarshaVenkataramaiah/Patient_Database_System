@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Database System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Patient Database System</h1>
+        <nav>
+            <button onclick="showSection('dashboard')">Dashboard</button>
+            <button onclick="showSection('add-patient')">Add Patient</button>
+            <button onclick="showSection('patient-list')">Patient List</button>
+        </nav>
+    </header>
+    <main>
+        <section id="dashboard" style="display: none;">
+            <h2>Dashboard</h2>
+            <p>Total Patients: <span id="totalPatients">0</span></p>
+            <p>Upcoming Appointments: <span id="upcomingAppointments">0</span></p>
+            <canvas id="genderChart" width="400" height="200"></canvas>
+        </section>
+
+        <section id="add-patient" style="display: none;">
+            <h2>Add New Patient</h2>
+            <form id="patientForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br>
+
+                <label for="age">Age:</label>
+                <input type="number" id="age" name="age" required><br>
+
+                <label for="gender">Gender:</label>
+                <select id="gender" name="gender" required>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select><br>
+
+                <label for="diagnosis">Diagnosis:</label>
+                <input type="text" id="diagnosis" name="diagnosis" required><br>
+
+                <label for="appointment">Appointment Date:</label>
+                <input type="date" id="appointment" name="appointment" required><br>
+
+                <button type="button" onclick="addPatient()">Add Patient</button>
+            </form>
+        </section>
+
+        <section id="patient-list" style="display: none;">
+            <h2>Patient List</h2>
+            <input type="text" id="search" placeholder="Search by Name or ID" oninput="filterPatients()">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Patient ID</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Gender</th>
+                        <th>Diagnosis</th>
+                        <th>Appointment</th>
+                    </tr>
+                </thead>
+                <tbody id="patientTable">
+                    <!-- Patient data will be dynamically inserted here -->
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
